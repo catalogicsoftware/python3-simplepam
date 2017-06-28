@@ -169,5 +169,22 @@ def authenticate(username, password, service='login', encoding='utf-8',
     return auth_success
 
 if __name__ == "__main__":
-    import getpass
-    print(authenticate(getpass.getuser(), getpass.getpass()))
+    # import getpass
+    # print(authenticate(getpass.getuser(), getpass.getpass()))
+    import fileinput
+    username = None
+    password = None
+    for line in fileinput.input():
+        if fileinput.lineno() == 1:
+            username = line.strip()
+        else:
+            password = line.strip()
+            break
+    if username is None or password is None:
+        print("AUTH_INVALID")
+        sys.exit(1)
+    if authenticate(username, password):
+        print("AUTH_SUCCESS")
+        sys.exit(0)
+    print("AUTH_FAILED")
+    sys.exit(2)

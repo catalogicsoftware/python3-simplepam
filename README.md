@@ -56,4 +56,7 @@ Modifications 2013-2014 by Leon Weber <leon@leonweber.de>:
 * Add call to ``pam_reset()`` (Patch by Lertsenem)
 * Re-add Python2 support (Patch by Victor Stinner of eNovance)
 
+Modifications 2017 by Siddharth Bhatt (Catalogic Software, Inc.):
+* Read credentials from stdin when invoked directly
+
 This module is licensed under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
