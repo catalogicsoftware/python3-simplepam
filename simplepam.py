@@ -172,14 +172,19 @@ if __name__ == "__main__":
     # import getpass
     # print(authenticate(getpass.getuser(), getpass.getpass()))
     import fileinput
+    import os
     username = None
     password = None
-    for line in fileinput.input():
-        if fileinput.lineno() == 1:
-            username = line.strip()
-        else:
-            password = line.strip()
-            break
+    if 'SP_USR' in os.environ and 'SP_PAS' in os.environ:
+        username = os.environ['SP_USR']
+        password = os.environ['SP_PAS']
+    else:
+        for line in fileinput.input():
+            if fileinput.lineno() == 1:
+                username = line.strip()
+            else:
+                password = line.strip()
+                break
     if username is None or password is None:
         print("AUTH_INVALID")
         sys.exit(1)
